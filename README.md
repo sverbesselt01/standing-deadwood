@@ -1,6 +1,6 @@
 ## Global, Multi-Scale Standing Deadwood Segmentation In Centimeter-Scale Aerial Images
 
-This repository contains code for the paper "Global, Multi-Scale Standing Deadwood Segmentation In Centimeter-Scale Aerial Images". (TODO add doi)
+This repository contains code for the paper "Global, Multi-Scale Standing Deadwood Segmentation In Centimeter-Scale Aerial Images". https://doi.org/10.1016/j.ophoto.2025.100104
 
 
 - Preprocessig: see `preprocessing_notebooks`
