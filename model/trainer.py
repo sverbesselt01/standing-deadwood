@@ -63,7 +63,8 @@ class DeadwoodTrainer:
             in_channels=3,
             classes=1,
         ).to(memory_format=torch.channels_last)
-        self.model = torch.compile(model)
+        #self.model = torch.compile(model)
+        self.model = model
 
         if self.config["loss"] == "bce":
             self.criterion = BCELoss(pos_weight=torch.Tensor(

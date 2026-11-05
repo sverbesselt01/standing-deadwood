@@ -1,5 +1,5 @@
 import random
-
+import os
 import pandas as pd
 import numpy as np
 import torch
@@ -145,12 +145,28 @@ class DeadwoodDataset(Dataset):
             if self.indexes is not None and index not in self.indexes:
                 index = (index + 1) % len(self.register_df)
                 continue
-            image_path = (
-                f'{self.images_dir}{self.register_df.iloc[index]["global_file_path"]}'
-            )
+
+            row = self.register_df.iloc[index]
+
+            # Extract filename from tile_path/mask_path (e.g., './patch_25088_0_bin1.png' -> 'patch_25088_0_bin1.png')
+            tile_filename = os.path.basename(row["tile_path"])
+            mask_filename = os.path.basename(row["mask_path"])
+
+            # Combine the directory with the file name
+            image_path = os.path.join(row["global_file_path"], tile_filename)
+            mask_path = os.path.join(row["global_file_path"], mask_filename)
+
+            # # Verify the file actually exists to avoid silent path mismatches
+            # if not os.path.isfile(image_path):
+            #     raise FileNotFoundError(f"Image not found: {image_path}")
+
+            # image = Image.open(image_path).convert("RGB")
+            # image_path = (
+            #     f'{self.images_dir}{self.register_df.iloc[index]["global_file_path"]}'
+            # )
             try:
                 image = Image.open(image_path).convert("RGB")
-                mask_path = image_path.replace(".tif", "_mask.tif")
+                # mask_path = image_path.replace(".tif", "_mask.tif")
                 mask = Image.open(mask_path).convert("L")
                 mutual_transforms = transforms.Compose(
                     [
