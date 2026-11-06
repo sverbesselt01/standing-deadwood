@@ -15,7 +15,10 @@ This repository does not contain code for the inference. For that checkout: http
 * slight modifications of the train_dataset.py file
 * deadtrees_preprocessing_dataset.py > added file to convert UAV orthophoto's and polygon labels to image tiles and masks + metadata.csv file, which can be used as a dataset for training/testing.
 * train_adapted.py > copy and adapted file of train.py, to train smaller deep learning segmentation models on a 1 GPU windows computer.
-* transfer_learning.py > added file to perform transfer learning on the model weights of : https://data2.deadtrees.earth/assets/v1/segformer_b5_full_epoch_100.safetensors 
+* transfer_learning.py > added file to perform transfer learning on the model weights of : https://data2.deadtrees.earth/assets/v1/segformer_b5_full_epoch_100.safetensors
+
+### Extra information:
+I used python 3.10. 
 
   
 
